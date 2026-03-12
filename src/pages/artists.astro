@@ -5,20 +5,38 @@ import { managementProfiles, roster } from "../data/siteContent";
 
 <Layout title="Artists | DNE Media">
   <section>
-    <p class="text-xs tracking-[0.28em] text-white/60">ARTISTS</p>
-    <h1 class="mt-4 text-4xl md:text-6xl">Artists / Roster</h1>
-    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <p class="text-[10px] tracking-[0.28em] text-white/60 uppercase">ARTISTS</p>
+    <h1 class="mt-4 font-serif text-2xl md:text-4xl text-white">Artists / Roster</h1>
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {managementProfiles.map((profile) => (
-        <a href={`/${profile.slug}`} class="inline-flex min-h-11 items-center justify-between rounded border border-white/10 px-4 py-4 text-white no-underline transition hover:border-white/40">
-          <span>{profile.label}</span>
-          <span class="text-white/60">↗</span>
+        <a href={`/${profile.slug}`} class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 border border-white/10">
+          <img 
+            src={profile.image} 
+            alt={profile.label} 
+            class="h-full w-full object-cover transition-all duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale group-hover:grayscale-0"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60"></div>
+          <div class="absolute bottom-0 left-0 w-full p-6 transition-transform duration-500 group-hover:-translate-y-2">
+            <h2 class="font-serif text-2xl text-white tracking-tight">{profile.label}</h2>
+            {profile.tags && (
+              <div class="mt-2 flex flex-wrap gap-2 opacity-0 transform translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-100">
+                {profile.tags.slice(0, 2).map(tag => (
+                  <span class="text-[9px] uppercase tracking-widest text-white/70 border border-white/20 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
         </a>
       ))}
     </div>
-    <ul class="mt-8 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {roster.map((artist) => (
-        <li class="rounded border border-white/10 px-3 py-3 text-sm text-white/85">{artist}</li>
-      ))}
-    </ul>
+    <div class="mt-16 mb-8 border-t border-white/10 pt-8">
+      <p class="text-[10px] tracking-[0.2em] text-white/40 uppercase mb-6">Full Roster</p>
+      <ul class="grid gap-x-4 gap-y-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {roster.map((artist) => (
+          <li class="text-[10px] text-white/60 hover:text-white transition-colors cursor-default uppercase tracking-wide">{artist}</li>
+        ))}
+      </ul>
+    </div>
   </section>
 </Layout>

@@ -4,23 +4,48 @@ import { aboutCopy, services } from "../data/siteContent";
 ---
 
 <Layout title="About | DNE Media">
-  <section>
-    <p class="text-xs tracking-[0.28em] text-white/60">ABOUT</p>
-    <h1 class="mt-4 text-4xl md:text-6xl">About DNE Media</h1>
-    <div class="mt-8 max-w-3xl space-y-5 text-lg text-white/85">
+  <section class="relative min-h-[50vh] flex flex-col justify-end pb-12 overflow-hidden">
+    <!-- Ambient Background -->
+    <div class="absolute top-[-10%] left-[-10%] h-[600px] w-[600px] rounded-full bg-white/[0.03] blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-4xl relative z-10">
+      <p class="mb-4 text-xs font-bold tracking-[0.3em] uppercase text-white/50 animate-fade-in">Our Story</p>
+      <h1 class="font-serif text-3xl leading-tight text-white md:text-4xl lg:text-5xl text-balance tracking-tighter">
+        <span class="block animate-fade-in delay-100">Visionaries.</span>
+        <span class="block animate-fade-in delay-200">Creators.</span>
+        <span class="block animate-fade-in delay-300 text-white/50">Partners.</span>
+      </h1>
+    </div>
+  </section>
+  
+  <div class="mb-16 border-b border-white/10"></div>
+
+  <section class="grid gap-10 lg:grid-cols-[1fr_2fr] mb-20">
+    <h2 class="font-serif text-2xl text-white/50 md:text-3xl sticky top-24 self-start mix-blend-difference animate-fade-in">The Studio</h2>
+    <div class="space-y-8 text-base leading-relaxed text-white/80 md:text-lg font-light animate-fade-in delay-200">
       <p>{aboutCopy[0]}</p>
       <p>{aboutCopy[1]}</p>
       <p>{aboutCopy[2]}</p>
-    </div>
-    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
-      {services.map((service) => (
-        <li class="rounded border border-white/10 px-4 py-4 text-white/90">{service}</li>
-      ))}
-    </ul>
-    <div class="mt-8 max-w-3xl space-y-5 text-lg text-white/85">
+      
+      <div class="relative my-12 py-8">
+        <div class="absolute inset-0 -skew-y-2 bg-white/[0.02]"></div>
+        <p class="relative font-serif text-2xl italic text-white md:text-3xl leading-tight text-center px-4">"{aboutCopy[5]}"</p>
+      </div>
+
       <p>{aboutCopy[3]}</p>
       <p>{aboutCopy[4]}</p>
-      <p class="font-serif text-2xl text-white">{aboutCopy[5]}</p>
     </div>
+  </section>
+
+  <section class="grid gap-10 lg:grid-cols-[1fr_2fr] mb-20">
+    <h2 class="font-serif text-2xl text-white/50 md:text-3xl sticky top-24 self-start mix-blend-difference">Capabilities</h2>
+    <ul class="space-y-px border-t border-white/10">
+      {services.map((service, i) => (
+        <li class="group flex items-center justify-between border-b border-white/10 py-6 transition-all duration-500 hover:bg-white/[0.02] hover:pl-4">
+          <span class="text-xl text-white/90 font-light md:text-2xl transition-colors group-hover:text-white">{service}</span>
+          <span class="text-[10px] tracking-widest text-white/30 opacity-0 transition-all duration-300 group-hover:opacity-100">0{i + 1}</span>
+        </li>
+      ))}
+    </ul>
   </section>
 </Layout>
